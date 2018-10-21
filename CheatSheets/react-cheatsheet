@@ -1,1 +1,71 @@
-Create a descriptive well formatted cheatsheet for all the things you should know about React JS 
+//Create a descriptive well formatted cheatsheet for all the things you should know about React JS 
+React is a JavaScript library for building user interfaces.
+
+Components
+import React from 'react'
+import ReactDOM from 'react-dom'
+class Hello extends React.Component {
+  render () {
+    return <div className='message-box'>
+      Hello {this.props.name}
+    </div>
+  }
+}
+const el = document.body
+ReactDOM.render(<Hello name='John' />, el)
+
+States
+constructor(props) {
+  super(props)
+  this.state = {}
+}
+this.setState({ username: 'rstacruz' })
+render () {
+  this.state.username
+  ···
+}
+
+Children
+<AlertBox>
+  <h1>You have pending notifications</h1>
+</AlertBox>
+ 
+class AlertBox extends React.Component {
+  render () {
+    return <div className='alert-box'>
+      {this.props.children}
+    </div>
+  }
+}
+
+Setting default state
+class Hello extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = { visible: true }
+  }
+}
+
+Properties
+<Video fullscreen={true} />
+render () {
+  this.props.fullscreen
+  ···
+}
+
+Lifecycle
+
+Mounting
+constructor (props)		Before rendering 
+componentWillMount()	Don’t use this 
+render()				Render 
+componentDidMount()		After rendering (DOM available) 
+componentWillUnmount()	Before DOM removal 
+componentDidCatch()		Catch errors 
+
+Updating
+componentWillReceiveProps (newProps)		Use setState() here
+shouldComponentUpdate (newProps, newState)	Skips render() if returns false
+componentWillUpdate (newProps, newState)	Can’t use setState() here
+render()									Render
+componentDidUpdate (prevProps, prevState)	Operate on the DOM here
