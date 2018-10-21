@@ -13,4 +13,17 @@ Output: 4
 
 Input: {0, 1, 2, 3, 4, 5, 6, 7, 10}, n = 9, m = 11
 Output: 8
+
+Solution written by:
+	Andrés Ignacio Torres
+	@aitorres on github
+	@andresitorresm on twitter
  */
+
+function smallest_missing_number(number_list, n, m) {
+	for (var i = 0; i < m; i++) {
+		if (i != number_list[i]) {
+			return i;
+		}
+	}
+}
