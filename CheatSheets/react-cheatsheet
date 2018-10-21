@@ -56,16 +56,16 @@ render () {
 Lifecycle
 
 Mounting
-constructor (props)		Before rendering 
-componentWillMount()	Don’t use this 
-render()				Render 
-componentDidMount()		After rendering (DOM available) 
+constructor (props)		  Before rendering 
+componentWillMount()	  Don’t use this 
+render()				        Render 
+componentDidMount()		  After rendering (DOM available) 
 componentWillUnmount()	Before DOM removal 
-componentDidCatch()		Catch errors 
+componentDidCatch()		  Catch errors 
 
 Updating
-componentWillReceiveProps (newProps)		Use setState() here
+componentWillReceiveProps (newProps)		    Use setState() here
 shouldComponentUpdate (newProps, newState)	Skips render() if returns false
-componentWillUpdate (newProps, newState)	Can’t use setState() here
-render()									Render
-componentDidUpdate (prevProps, prevState)	Operate on the DOM here
+componentWillUpdate (newProps, newState)	  Can’t use setState() here
+render()									                  Render
+componentDidUpdate (prevProps, prevState)	  Operate on the DOM here
