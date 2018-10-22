@@ -1,1 +1,234 @@
-Create a descriptive well formatted cheatsheet for all the things you should know about React JS 
+##GETTING STARTED
+
+npm install --save react       // JavaScript library for building UI
+npm install --save react-dom   // entry point of the DOM-related rendering paths
+npm install --save prop-types  // runtime type checking for React props and similar objects
+
+##BASIC STRUCTURE
+React.cloneElement(
+  element,
+  [props],
+  [...children]
+)
+
+##SMALLEST EXAMPLE OF A REACT APP - THE CLASSIC HELLO WORLD
+ReactDOM.render(
+  <h1>Hello, world!</h1>,
+  document.getElementById('root')
+);
+
+React.Children  //to access children
+
+React.Fragment //return multiple elements in a render() method without creating an additional DOM element
+
+##REACT COMPONENT
+
+class Component extends React.Component {
+  // Called before mounting
+  constructor(props) {
+    //Always call super(props) first
+    super(props);
+
+    // Binding makes sure the method has access to component attributes like this.props and this.state
+    this.method = this.method.bind(this);
+
+    // Initialize state in the constructor
+    this.state = {
+      active: true,
+
+      // In rare cases, it’s okay to initialize state based on props.
+      // This effectively “forks” the props and sets the state with the initial props.
+      // If you “fork” props by using them for state, you might also want to implement componentWillReceiveProps(nextProps)
+      color: props.initialColor
+    };
+  }
+  
+  // tells React that component and children need to be re-rendered with updated state.
+  setState(updater[, callback]) { }
+  
+  // Invoked just before mounting occurs (before render())
+    componentWillMount() { }
+    
+  // Invoked immediately after a component is mounted.
+  componentDidMount() { }
+  
+  // Invoked before a mounted component receives new props.
+  componentWillReceiveProps(nextProps) { }
+  
+  // Let React know if a component’s output is not affected by the current change in state or props.
+  // Returning false does not prevent child components from re-rendering when their state changes.
+  shouldComponentUpdate(nextProps, nextState) { }
+  
+  // Invoked just before rendering when new props or state are being received.
+  componentWillUpdate(nextProps, nextState) { }
+  
+  // Invoked immediately after updating occurs. This method is not called for the initial render.
+  // Use this as an opportunity to operate on the DOM when the component has been updated.
+  componentDidUpdate(prevProps, prevState) { }
+  
+  // Invoked immediately before a component is unmounted and destroyed.
+  componentWillUnmount() { }
+  
+  // Error boundaries are React components that catch JavaScript errors anywhere in their child component tree,
+  // log those errors, and display a fallback UI instead of the component tree that crashed.
+  // Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
+  componentDidCatch() { }
+  
+  // This method is required.
+  // It returns the same result each time it’s invoked, and
+  // it does not directly interact with the browser (use lifecycle methods for this)
+  // It must return one of the following types: react elements, string and numbers, portals, null or booleans.
+  render() {
+    // Contains the props that were defined by the caller of this component.
+    console.log(this.props);
+
+    // Contains data specific to this component that may change over time.
+    console.log(this.state);
+
+    return (
+      <div>
+        Hello, {this.props.name}!
+      </div>
+    );
+  }
+}
+
+
+// Can be defined as a property on the component class itself, to set the default props for the class.
+// This is used for undefined props, but not for null props.
+Component.defaultProps = {
+  color: 'red'
+};
+
+component = new Component();
+
+// By default, when your component’s state or props change, your component will re-render.
+// Normally you should try to avoid all uses of forceUpdate() and only read from this.props and this.state in render().
+component.forceUpdate(callback)
+
+
+## REACT.DOM
+## The react-dom package provides DOM-specific methods that can be used at the top level of
+## your app and as an escape hatch to get outside of the React model if you need to.
+
+// Render a React element into the DOM in the supplied container and return a reference to component
+ReactDOM.render(element, container[, callback])
+
+// Similiar to render(), but used to hydrate a container whose HTML contents were rendered
+// by ReactDOMServer. React will attempt to attach event listeners to the existing markup.
+ReactDOM.hydrate(element, container[, callback])
+
+// Remove a mounted React component from the DOM and clean up its event handlers and state.
+// Returns true if a component was unmounted
+ReactDOM.unmountComponentAtNode(container)
+
+// If this component has been mounted into the DOM, this returns the corresponding native browser
+// DOM element. Useful for reading values out of the DOM
+ReactDOM.findDOMNode(component)
+
+// Creates a portal. Portals provide a way to render children into a DOM node that exists outside
+// the hierarchy of the DOM component.
+ReactDOM.createPortal(child, container)
+
+
+## REACTDOMSERVER
+## The ReactDOMServer object enables you to render components to static markup.
+
+// Render a React element to its initial HTML. React will return an HTML string.
+ReactDOMServer.renderToString(element)
+
+// Similar to renderToString, except this doesn’t create extra DOM attributes that React uses
+// internally, such as data-reactroot. This is useful if you want to use React as a simple static
+// page generator
+ReactDOMServer.renderToStaticMarkup(element)
+
+// Render a React element to its initial HTML. Returns a Readable stream that outputs an HTML string.
+// You can use this method to generate HTML on the server and send the markup down on the initial
+// request for faster page loads and to allow search engines to crawl your pages for SEO purposes.
+ReactDOMServer.renderToNodeStream(element)
+
+// Similar to renderToNodeStream, except this doesn’t create extra DOM attributes that React uses
+// internally, such as data-reactroot. This is useful if you want to use React as a simple static
+// page generator, as stripping away the extra attributes can save some bytes.
+ReactDOMServer.renderToStaticNodeStream(element)
+
+##PROPTYPES - TYPECHECKING
+
+import PropTypes from 'prop-types';
+
+MyComponent.propTypes = {
+  //PROPTYPES LIST
+  optionalArray: PropTypes.array,
+  optionalBool: PropTypes.bool,
+  optionalFunc: PropTypes.func,
+  optionalNumber: PropTypes.number,
+  optionalObject: PropTypes.object,
+  optionalString: PropTypes.string,
+  optionalSymbol: PropTypes.symbol,
+
+  // Anything that can be rendered: numbers, strings, elements or an array
+  // containing these types.
+  optionalNode: PropTypes.node,
+
+  // React element.
+  optionalElement: PropTypes.element,
+
+  // Declare that a prop is an instance of a class.
+  optionalMessage: PropTypes.instanceOf(Message),
+
+  // Ensure that your prop is limited to specific values by treating it as an enum
+  optionalEnum: PropTypes.oneOf(['News', 'Photos']),
+
+  // An object that could be one of many types
+  optionalUnion: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.instanceOf(Message)
+  ]),
+
+  // An array of a certain type
+  optionalArrayOf: PropTypes.arrayOf(PropTypes.number),
+
+  // An object with property values of a certain type
+  optionalObjectOf: PropTypes.objectOf(PropTypes.number),
+
+  // An object taking on a particular shape
+  optionalObjectWithShape: PropTypes.shape({
+    color: PropTypes.string,
+    fontSize: PropTypes.number
+  }),
+
+  // You can chain any of the above with `isRequired` to make sure a warning
+  // is shown if the prop isn't provided.
+  requiredFunc: PropTypes.func.isRequired,
+
+  // A value of any data type
+  requiredAny: PropTypes.any.isRequired,
+
+  // You can also specify a custom validator. It should return an Error
+  // object if the validation fails. Don't `console.warn` or throw, as this
+  // won't work inside `oneOfType`.
+  customProp: function(props, propName, componentName) {
+    if (!/matchme/.test(props[propName])) {
+      return new Error(
+        'Invalid prop `' + propName + '` supplied to' +
+        ' `' + componentName + '`. Validation failed.'
+      );
+    }
+  },
+
+  // You can also supply a custom validator to `arrayOf` and `objectOf`.
+  // It should return an Error object if the validation fails. The first two
+  // arguments of the validator are the array or object itself, and the
+  // current item's key.
+  customArrayProp: PropTypes.arrayOf(function(propValue, key, componentName, location, propFullName) {
+    if (!/matchme/.test(propValue[key])) {
+      return new Error(
+        'Invalid prop `' + propFullName + '` supplied to' +
+        ' `' + componentName + '`. Validation failed.'
+      );
+    }
+  })
+};
+
+REACT DOCS: https://reactjs.org/docs/getting-started.html
