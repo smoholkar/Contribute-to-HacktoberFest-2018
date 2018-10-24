@@ -1,1 +1,55 @@
 Create a descriptive well formatted cheatsheet for all the things you should know about Flexbox
+
+Flex Box is based on CSS and it consists of 2 element types namely Container and items.
+
+Quick start steps for FlexBox usage:
+====================================
+
+1.To start using Flexbox first step is to create a flex container.
+
+.flex-container {
+    display: flex;
+}
+
+/* OR */
+
+.flex-container {
+    display: inline-flex;
+}
+
+2. Once container is ready different properties can be applied to it. list of properties include:
+
+    flex-direction
+    flex-wrap
+    flex-flow
+    justify-content
+    align-items
+    align-content
+    order
+    align-self
+    flex-grow
+    flex-shrink
+    flex-basis
+    flex
+	
+3. Property usage:
+
+	1. flex-direction
+	Usage:
+		flex-direction: row | row-reverse | column | column-reverse
+	Description: Specifies how flex items are positioned within container.
+	
+	2. flex-wrap
+	Usage:
+		flex-wrap: nowrap | wrap | wrap-reverse
+	Description: Controls whether the flex container is single-line or multi-line, and the direction of the cross-axis, 
+	which determines the direction new lines are stacked in.
+	
+	3.flex-flow
+	Usage:
+		flex-flow: <'flex-direction'> <'flex-wrap'>
+	Description: is a shorthand for setting the flex-direction and flex-wrap properties, which together define the flex container’s main and cross axes.
+	The initial value of the flex-flow property is the concatenation of the initial values of the flex-direction and flex-wrap properties:
+		flex-flow: row nowrap;
+		
+
