@@ -1,1 +1,33 @@
 Create a descriptive well formatted cheatsheet for all the things you should know about Flexbox
+
+Flex Box is based on CSS and it consists of 2 element types namely Container and items.
+
+Quick start steps for FlexBox usage:
+====================================
+
+1.To start using Flexbox first step is to create a flex container.
+
+.flex-container {
+    display: flex;
+}
+
+/* OR */
+
+.flex-container {
+    display: inline-flex;
+}
+
+2. Once container is ready different properties can be applied to it. list of properties include:
+
+    flex-direction
+    flex-wrap
+    flex-flow
+    justify-content
+    align-items
+    align-content
+    order
+    align-self
+    flex-grow
+    flex-shrink
+    flex-basis
+    flex
