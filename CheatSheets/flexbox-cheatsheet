@@ -31,3 +31,25 @@ Quick start steps for FlexBox usage:
     flex-shrink
     flex-basis
     flex
+	
+3. Property usage:
+
+	1. flex-direction
+	Usage:
+		flex-direction: row | row-reverse | column | column-reverse
+	Description: Specifies how flex items are positioned within container.
+	
+	2. flex-wrap
+	Usage:
+		flex-wrap: nowrap | wrap | wrap-reverse
+	Description: Controls whether the flex container is single-line or multi-line, and the direction of the cross-axis, 
+	which determines the direction new lines are stacked in.
+	
+	3.flex-flow
+	Usage:
+		flex-flow: <'flex-direction'> <'flex-wrap'>
+	Description: is a shorthand for setting the flex-direction and flex-wrap properties, which together define the flex container’s main and cross axes.
+	The initial value of the flex-flow property is the concatenation of the initial values of the flex-direction and flex-wrap properties:
+		flex-flow: row nowrap;
+		
+
