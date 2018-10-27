@@ -7,6 +7,7 @@
 Output : 110
 Input : arr[] = {1, 2, 3}
 Output : 4
+ssss
  */
  function maiorValor(lista){
      aux = 0;
