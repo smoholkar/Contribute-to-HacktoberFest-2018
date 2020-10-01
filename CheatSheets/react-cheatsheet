@@ -69,3 +69,25 @@ shouldComponentUpdate (newProps, newState)	Skips render() if returns false
 componentWillUpdate (newProps, newState)	  Can’t use setState() here
 render()									                  Render
 componentDidUpdate (prevProps, prevState)	  Operate on the DOM here
+
+Fragments
+const FragmentComponentOne = () => (
+  <>
+    <section>
+      <p>Section 1 content here.</p>
+    </section>
+    <section>
+      <p>Section 2 content here.</p>
+    </section>
+  </>
+)
+const FragmentComponentTwo = () => (
+  <Fragment>
+    <section>
+      <p>Section 1 content here.</p>
+    </section>
+    <section>
+      <p>Section 2 content here.</p>
+    </section>
+  </Fragment>
+)
